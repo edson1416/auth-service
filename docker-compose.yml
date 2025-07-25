@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  auth-service:
+    build: .
+    container_name: auth_backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://contenedor-postgres:5432/red_social_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: none
+      SPRING_JPA_SHOW_SQL: "true"
+      JWT_SECRET_KEY: c75a7e2e2d5d39e4918f8c10f7bce11be514ff18fdbe65cb3d47c78d388b85d0
+    networks:
+      - backend-network
+networks:
+  backend-network:
+    external: true
